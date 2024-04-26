@@ -13,7 +13,19 @@ function App() {
     setDatas(savesData);
     setInputs('');
   }
-  console.log(datas);
+  //console.log(datas);
+  ///delete 
+  const handleDelete=(idx)=>{
+    console.log(idx)
+      const updateData=datas.filter((item,id)=> idx !=id);
+      console.log(updateData)
+      setDatas(updateData);
+  }
+  //all datele
+  function handleAll(){
+    setDatas([]);
+  }
+
   return (
     <div>
       <h3 className='text-center py-3 bg-black text-2xl text-white font-extrabold'>TODO LIST APP YOUR TEXT SAVE ZONE!</h3>
@@ -24,19 +36,24 @@ function App() {
         </div>
         {/*Show Data */}
         <div className='bg-[#0088] w-2/3 mt-2 px-4 py-4 rounded  text-white '>
-          <h2 className='text-2xl font-bold pb-2'>Collection To Show Data: </h2>
+          <div className='flex justify-between items-center mb-2'>
+              <h2 className='text-2xl font-bold pb-2'>Collection To Show Data: </h2>
+             <button onClick={handleAll} className='px-4 bg-orange-400 py-2 rounded-xl'>All Delete</button>
+          </div>
+         
           <div className='flex flex-col gap-4'>
             {
               datas.map((items, idx) =>
 
                 <div key={idx} className='flex justify-between items-center bg-slate-500 py-3 px-2 rounded-lg pt-2'>
                   <p className=''>{items}</p>
-                  <button type="button" className='bg-red-500  px-4 py-2 rounded-xl'>X</button>
+                  <button onClick={()=>handleDelete(idx)} type="button" className='bg-red-500  px-4 py-2 rounded-xl'>X</button>
                 </div>
 
               )
             }
           </div>
+         
         </div>
       </div>
     </div>
